@@ -1,0 +1,1165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document Version="3.0.0" SystemTime="1391381848201">
+  <ScoreBoard>
+    <Reset empty="true"><![CDATA[]]></Reset>
+    <StartJam empty="true"><![CDATA[]]></StartJam>
+    <UnStartJam empty="true"><![CDATA[]]></UnStartJam>
+    <StopJam empty="true"><![CDATA[]]></StopJam>
+    <UnStopJam empty="true"><![CDATA[]]></UnStopJam>
+    <Timeout empty="true"><![CDATA[]]></Timeout>
+    <UnTimeout empty="true"><![CDATA[]]></UnTimeout>
+    <StartOvertime empty="true"><![CDATA[]]></StartOvertime>
+    <TimeoutOwner empty="true"><![CDATA[]]></TimeoutOwner>
+    <OfficialReview><![CDATA[false]]></OfficialReview>
+    <InOvertime><![CDATA[false]]></InOvertime>
+    <InPeriod><![CDATA[true]]></InPeriod>
+    <OfficialScore><![CDATA[false]]></OfficialScore>
+    <Policy Id="Period Clock Resets Official Score">
+      <Name><![CDATA[Period Clock Resets Official Score]]></Name>
+      <Description><![CDATA[When the Period ends, as reported by ScoreBoard's InPeriod event, this resets the ScoreBoard OfficialScore to false.]]></Description>
+      <Enabled><![CDATA[false]]></Enabled>
+    </Policy>
+    <Policy Id="Timeout Clock Controls Lineup Clock">
+      <Name><![CDATA[Timeout Clock Controls Lineup Clock]]></Name>
+      <Description><![CDATA[This controls the Lineup clock based on the Timeout clock.  When the Timeout clock starts, the Lineup clock is stopped then reset.]]></Description>
+      <Enabled><![CDATA[true]]></Enabled>
+    </Policy>
+    <Policy Id="Timeout Clock Clears Timeout Owner">
+      <Name><![CDATA[Timeout Clock Clears Timeout Owner]]></Name>
+      <Description><![CDATA[This clears the Timeout Owner based on the Timeout clock.  When the Timeout clock stops, the Timeout Owner is cleared.]]></Description>
+      <Enabled><![CDATA[true]]></Enabled>
+    </Policy>
+    <Policy Id="Period Clock Controls Lineup Clock">
+      <Name><![CDATA[Period Clock Controls Lineup Clock]]></Name>
+      <Description><![CDATA[This controls the Lineup clock based on the Period clock.  When the Period clock stops and its time is equal to its minimum (if counting down, or its maximum if counting up), and the Jam clock is also stopped, the Lineup clock is stopped and reset.]]></Description>
+      <Enabled><![CDATA[false]]></Enabled>
+    </Policy>
+    <Policy Id="Team Lead Jammer Independent">
+      <Name><![CDATA[Team Lead Jammer Independent]]></Name>
+      <Description><![CDATA[When enabled, teams will use their Position(Jammer) to track LeadJammer.  When disabled, teams will track LeadJammer internally.  This should be enabled if tracking lineups, and disabled if not tracking lineups.]]></Description>
+      <Enabled><![CDATA[true]]></Enabled>
+    </Policy>
+    <Policy Id="Lineup Clock Starts Jam">
+      <Name><![CDATA[Lineup Clock Starts Jam]]></Name>
+      <Description><![CDATA[This starts the jam based on the Lineup clock.  When the Lineup clock reaches or exceeds the trigger value (by default 30 seconds), the jam is started (via StartJam), and the Lineup clock is stopped and reset (to avoid possible accidental triggers of this policy).  By default, this policy is disabled.  Also note that if the Lineup clock's minimum time is greater than or equal to the trigger time (if the Lineup clock is counting up; if counting down, the maximum time is less than or equal to the trigger time), this policy will not operate, to avoid an infinite loop.]]></Description>
+      <Enabled><![CDATA[false]]></Enabled>
+      <Parameter Id="Jam trigger time">
+        <Name><![CDATA[Jam trigger time]]></Name>
+        <Type><![CDATA[Double]]></Type>
+        <Value><![CDATA[30.0]]></Value>
+      </Parameter>
+      <Parameter Id="Overtime Jam trigger time">
+        <Name><![CDATA[Overtime Jam trigger time]]></Name>
+        <Type><![CDATA[Double]]></Type>
+        <Value><![CDATA[60.0]]></Value>
+      </Parameter>
+    </Policy>
+    <Policy Id="Penalty Box Controls Lead Jammer">
+      <Name><![CDATA[Penalty Box Controls Lead Jammer]]></Name>
+      <Description><![CDATA[This removes Lead Jammer from any Skater sent to the Penalty Box.]]></Description>
+      <Enabled><![CDATA[true]]></Enabled>
+    </Policy>
+    <Policy Id="Clock Sync">
+      <Name><![CDATA[Clock Sync]]></Name>
+      <Description><![CDATA[When enabled, all clocks will sync to the nearest second.  This allows all clocks to change in sync, however when any clock is started it will either be delayed or accelerated by up to 500 ms.  When disabled, clocks will start immediately, but will run out of sync with each other.  If disabled and then re-enabled, any currently running clock will remain unsynced until it stops.]]></Description>
+      <Enabled><![CDATA[true]]></Enabled>
+    </Policy>
+    <Policy Id="PagePolicy_scoreboard.html">
+      <Name><![CDATA[Page: scoreboard.html]]></Name>
+      <Description><![CDATA[This controls elements specific to the scoreboard.html page.]]></Description>
+      <Enabled><![CDATA[true]]></Enabled>
+      <Parameter Id="Reset Intermission Confirmed">
+        <Name><![CDATA[Reset Intermission Confirmed]]></Name>
+        <Type><![CDATA[Boolean]]></Type>
+        <Value><![CDATA[true]]></Value>
+      </Parameter>
+    </Policy>
+    <Policy Id="Timeout Clock Clears Official Review">
+      <Name><![CDATA[Timeout Clock Clears Official Review]]></Name>
+      <Description><![CDATA[This clears the Official Review flag based on the Timeout clock.  When the Timeout clock stops, the Official Review flag is set to false.]]></Description>
+      <Enabled><![CDATA[false]]></Enabled>
+    </Policy>
+    <Policy Id="PagePolicy_overlay.html">
+      <Name><![CDATA[Page: overlay.html]]></Name>
+      <Description><![CDATA[When Enabled, the overlay page will display team logos next to their Time-Outs-Remaining area.]]></Description>
+      <Enabled><![CDATA[true]]></Enabled>
+      <Parameter Id="Black Background">
+        <Name><![CDATA[Black Background]]></Name>
+        <Type><![CDATA[Boolean]]></Type>
+        <Value><![CDATA[true]]></Value>
+      </Parameter>
+    </Policy>
+    <Policy Id="Team Lead Jammer Unique">
+      <Name><![CDATA[Team Lead Jammer Unique]]></Name>
+      <Description><![CDATA[This allows only one team to have lead jammer status; when either team gains lead jammer, the other team will be forced to lose lead jammer if it has it.]]></Description>
+      <Enabled><![CDATA[true]]></Enabled>
+    </Policy>
+    <Policy Id="Intermission Clock Stop">
+      <Name><![CDATA[Intermission Clock Stop]]></Name>
+      <Description><![CDATA[When the Intermission clock is over, this resets the Period and Jam clock times, and (optionally) increments both of their numbers.  This will only modify the clocks if both are stopped and the Period clock's time is at its end (if counting down, its minimum; if counting up, its maximum).]]></Description>
+      <Enabled><![CDATA[true]]></Enabled>
+      <Parameter Id="Jam Reset Time">
+        <Name><![CDATA[Jam Reset Time]]></Name>
+        <Type><![CDATA[Boolean]]></Type>
+        <Value><![CDATA[true]]></Value>
+      </Parameter>
+      <Parameter Id="Period Increment Number">
+        <Name><![CDATA[Period Increment Number]]></Name>
+        <Type><![CDATA[Boolean]]></Type>
+        <Value><![CDATA[true]]></Value>
+      </Parameter>
+      <Parameter Id="Jam Reset Number">
+        <Name><![CDATA[Jam Reset Number]]></Name>
+        <Type><![CDATA[Boolean]]></Type>
+        <Value><![CDATA[true]]></Value>
+      </Parameter>
+      <Parameter Id="Period Reset Time">
+        <Name><![CDATA[Period Reset Time]]></Name>
+        <Type><![CDATA[Boolean]]></Type>
+        <Value><![CDATA[true]]></Value>
+      </Parameter>
+      <Parameter Id="Period Reset Number">
+        <Name><![CDATA[Period Reset Number]]></Name>
+        <Type><![CDATA[Boolean]]></Type>
+        <Value><![CDATA[false]]></Value>
+      </Parameter>
+      <Parameter Id="Jam Increment Number">
+        <Name><![CDATA[Jam Increment Number]]></Name>
+        <Type><![CDATA[Boolean]]></Type>
+        <Value><![CDATA[false]]></Value>
+      </Parameter>
+      <Parameter Id="Reset Official Reviews">
+        <Name><![CDATA[Reset Official Reviews]]></Name>
+        <Type><![CDATA[Boolean]]></Type>
+        <Value><![CDATA[true]]></Value>
+      </Parameter>
+    </Policy>
+    <Policy Id="Timeout Clock Increments Timeout Number">
+      <Name><![CDATA[Timeout Clock Increments Timeout Number]]></Name>
+      <Description><![CDATA[This controls the Timeout clock number.  When the Timeout clock stops, the Timeout number is incremented.]]></Description>
+      <Enabled><![CDATA[true]]></Enabled>
+    </Policy>
+    <Policy Id="Jam Clock Ends Overtime">
+      <Name><![CDATA[Jam Clock Ends Overtime]]></Name>
+      <Description><![CDATA[This ends Overtime (if the bout is in Overtime).  When the Jam clock stops, Overtime is set to false.]]></Description>
+      <Enabled><![CDATA[true]]></Enabled>
+    </Policy>
+    <Policy Id="Jam Clock Controls Team Positions">
+      <Name><![CDATA[Jam Clock Controls Team Positions]]></Name>
+      <Description><![CDATA[This clears all Team Positions (who are not in the Penalty Box) when the Jam clock is stopped, sets all Skaters to Not Lead Jammer, and sets the Team to Not Lead Jammer.]]></Description>
+      <Enabled><![CDATA[true]]></Enabled>
+    </Policy>
+    <Policy Id="Lineup Clock Resets Jam Time">
+      <Name><![CDATA[Lineup Clock Resets Jam Time]]></Name>
+      <Description><![CDATA[This resets the Jam clock and increments the Jam number based on the Lineup clock.	When the Lineup clock ends (i.e. it stops and its time is at minimum or maximum depending on count direction), the Jam clock time is reset, and the Jam number is incremented.	 Note that this will do nothing if the Jam clock is running when the Lineup clock ends.]]></Description>
+      <Enabled><![CDATA[false]]></Enabled>
+    </Policy>
+    <Policy Id="Jam Clock Controls Lineup Clock">
+      <Name><![CDATA[Jam Clock Controls Lineup Clock]]></Name>
+      <Description><![CDATA[This controls the Lineup clock based on the Jam clock.  When the Jam clock starts, the Lineup clock is stopped.  When the Jam clock stops, and the Period clock is running, and the Lineup clock is not running, the Lineup clock is reset then started.]]></Description>
+      <Enabled><![CDATA[true]]></Enabled>
+    </Policy>
+    <Policy Id="Lineup Clock Starts Timeout">
+      <Name><![CDATA[Lineup Clock Starts Timeout]]></Name>
+      <Description><![CDATA[This starts a Timeout based on the Lineup clock.  When the Lineup clock reaches or exceeds the trigger value (by default 30 seconds), the Lineup clock is stopped and reset (to avoid possible accidental triggers of this policy) and a Timeout is started.  If the period rollback value is not zero, the Period clock time will be rolled back by that value.  The period rollback time is intended to be used as a 'buffer' so the jam can start a couple seconds after the 30-second lineup to allow for slight differences between the scoreboard operator's lineup clock time and the NSO scorekeeper's lineup clock time, but for lineups that go 'too far' past the 30-second time a timeout will be called and the period clock 'rolled back' to exactly the time it was at when the lineup clock hit 30 seconds.  So for example, if the trigger time was 35 seconds, the rollback value should be 5 seconds.  By default, this policy is disabled.  Also note that if the Lineup clock's minimum time is greater than or equal to the trigger time (if the Lineup clock is counting up; if counting down, the maximum time is less than or equal to the trigger time), this policy will not operate, to avoid an infinite loop.]]></Description>
+      <Enabled><![CDATA[false]]></Enabled>
+      <Parameter Id="Period rollback time">
+        <Name><![CDATA[Period rollback time]]></Name>
+        <Type><![CDATA[Double]]></Type>
+        <Value><![CDATA[0.0]]></Value>
+      </Parameter>
+      <Parameter Id="Timeout trigger time">
+        <Name><![CDATA[Timeout trigger time]]></Name>
+        <Type><![CDATA[Double]]></Type>
+        <Value><![CDATA[30.0]]></Value>
+      </Parameter>
+    </Policy>
+    <Policy Id="Overtime Lineup Time">
+      <Name><![CDATA[Overtime Lineup Time]]></Name>
+      <Description><![CDATA[When entering Overtime and this policy is enabled, if the Lineup clock maximum time is less than the 'Overtime Lineup Time' parameter (specified in seconds), the 'Saved Lineup Time' parameter (specified in milliseconds) will be set to the Lineup clock's current maximum time and the 'Restore Lineup Time' parameter will be enabled, and then the Lineup time will be set to the 'Overtime Lineup Time' parameter value.  Then when ending Overtime and this policy is enabled and the 'Restore Lineup Time' parameter is enabled, the Lineup time will be set to the 'Saved Lineup Time' parameter, and the 'Saved Lineup Time' parameter will be set to 0 and 'Restore Lineup Time' parameter disabled.  The intention of this Policy is, if the Lineup clock is set to count down from 30 seconds, the current WFTDA ruleset specifies a 1 minute Lineup time before the Overtime Jam, so when Overtime is started the Lineup clock needs to be adjusted to count the full 1 minute Lineup.]]></Description>
+      <Enabled><![CDATA[true]]></Enabled>
+      <Parameter Id="Overtime Lineup Time">
+        <Name><![CDATA[Overtime Lineup Time]]></Name>
+        <Type><![CDATA[Long]]></Type>
+        <Value><![CDATA[60]]></Value>
+      </Parameter>
+      <Parameter Id="Saved Lineup Time">
+        <Name><![CDATA[Saved Lineup Time]]></Name>
+        <Type><![CDATA[Long]]></Type>
+        <Value><![CDATA[0]]></Value>
+      </Parameter>
+      <Parameter Id="Restore Lineup Time">
+        <Name><![CDATA[Restore Lineup Time]]></Name>
+        <Type><![CDATA[Boolean]]></Type>
+        <Value><![CDATA[false]]></Value>
+      </Parameter>
+    </Policy>
+    <Policy Id="Intermission Clock Start">
+      <Name><![CDATA[Intermission Clock Start]]></Name>
+      <Description><![CDATA[When the Period is over, this sets and starts the Intermission clock time and optionally sets the number to the Period number.]]></Description>
+      <Enabled><![CDATA[true]]></Enabled>
+      <Parameter Id="SetIntermissionNumber">
+        <Name><![CDATA[SetIntermissionNumber]]></Name>
+        <Type><![CDATA[Boolean]]></Type>
+        <Value><![CDATA[true]]></Value>
+      </Parameter>
+      <Parameter Id="SetIntermissionTimeTo">
+        <Name><![CDATA[SetIntermissionTimeTo]]></Name>
+        <Type><![CDATA[String]]></Type>
+        <Value><![CDATA[15:00]]></Value>
+      </Parameter>
+    </Policy>
+    <Team Id="1">
+      <Timeout empty="true"><![CDATA[]]></Timeout>
+      <OfficialReview empty="true"><![CDATA[]]></OfficialReview>
+      <Name><![CDATA[C.U.C.A]]></Name>
+      <Logo empty="true"><![CDATA[]]></Logo>
+      <Score><![CDATA[6]]></Score>
+      <Timeouts><![CDATA[3]]></Timeouts>
+      <OfficialReviews><![CDATA[0]]></OfficialReviews>
+      <LeadJammer><![CDATA[false]]></LeadJammer>
+      <Pass><![CDATA[0]]></Pass>
+      <Position Id="Blocker2">
+        <Clear empty="true"><![CDATA[]]></Clear>
+        <Id empty="true"><![CDATA[]]></Id>
+        <Name empty="true"><![CDATA[]]></Name>
+        <Number empty="true"><![CDATA[]]></Number>
+      </Position>
+      <Position Id="Jammer">
+        <Clear empty="true"><![CDATA[]]></Clear>
+        <Id empty="true"><![CDATA[]]></Id>
+        <Name empty="true"><![CDATA[]]></Name>
+        <Number empty="true"><![CDATA[]]></Number>
+      </Position>
+      <Position Id="Blocker1">
+        <Clear empty="true"><![CDATA[]]></Clear>
+        <Id empty="true"><![CDATA[]]></Id>
+        <Name empty="true"><![CDATA[]]></Name>
+        <Number empty="true"><![CDATA[]]></Number>
+      </Position>
+      <Position Id="Pivot">
+        <Clear empty="true"><![CDATA[]]></Clear>
+        <Id empty="true"><![CDATA[]]></Id>
+        <Name empty="true"><![CDATA[]]></Name>
+        <Number empty="true"><![CDATA[]]></Number>
+      </Position>
+      <Position Id="Blocker3">
+        <Clear empty="true"><![CDATA[]]></Clear>
+        <Id empty="true"><![CDATA[]]></Id>
+        <Name empty="true"><![CDATA[]]></Name>
+        <Number empty="true"><![CDATA[]]></Number>
+      </Position>
+    </Team>
+    <Team Id="2">
+      <Timeout empty="true"><![CDATA[]]></Timeout>
+      <OfficialReview empty="true"><![CDATA[]]></OfficialReview>
+      <Name><![CDATA[Evelyn Mack]]></Name>
+      <Logo empty="true"><![CDATA[]]></Logo>
+      <Score><![CDATA[8]]></Score>
+      <Timeouts><![CDATA[3]]></Timeouts>
+      <OfficialReviews><![CDATA[0]]></OfficialReviews>
+      <LeadJammer><![CDATA[false]]></LeadJammer>
+      <Pass><![CDATA[0]]></Pass>
+      <Position Id="Blocker2">
+        <Clear empty="true"><![CDATA[]]></Clear>
+        <Id empty="true"><![CDATA[]]></Id>
+        <Name empty="true"><![CDATA[]]></Name>
+        <Number empty="true"><![CDATA[]]></Number>
+      </Position>
+      <Position Id="Jammer">
+        <Clear empty="true"><![CDATA[]]></Clear>
+        <Id empty="true"><![CDATA[]]></Id>
+        <Name empty="true"><![CDATA[]]></Name>
+        <Number empty="true"><![CDATA[]]></Number>
+      </Position>
+      <Position Id="Blocker1">
+        <Clear empty="true"><![CDATA[]]></Clear>
+        <Id empty="true"><![CDATA[]]></Id>
+        <Name empty="true"><![CDATA[]]></Name>
+        <Number empty="true"><![CDATA[]]></Number>
+      </Position>
+      <Position Id="Pivot">
+        <Clear empty="true"><![CDATA[]]></Clear>
+        <Id empty="true"><![CDATA[]]></Id>
+        <Name empty="true"><![CDATA[]]></Name>
+        <Number empty="true"><![CDATA[]]></Number>
+      </Position>
+      <Position Id="Blocker3">
+        <Clear empty="true"><![CDATA[]]></Clear>
+        <Id empty="true"><![CDATA[]]></Id>
+        <Name empty="true"><![CDATA[]]></Name>
+        <Number empty="true"><![CDATA[]]></Number>
+      </Position>
+    </Team>
+    <Clock Id="Period">
+      <Start empty="true"><![CDATA[]]></Start>
+      <UnStart empty="true"><![CDATA[]]></UnStart>
+      <Stop empty="true"><![CDATA[]]></Stop>
+      <UnStop empty="true"><![CDATA[]]></UnStop>
+      <ResetTime empty="true"><![CDATA[]]></ResetTime>
+      <Name><![CDATA[Period]]></Name>
+      <Number><![CDATA[1]]></Number>
+      <MinimumNumber><![CDATA[1]]></MinimumNumber>
+      <MaximumNumber><![CDATA[2]]></MaximumNumber>
+      <Time><![CDATA[203850]]></Time>
+      <MinimumTime><![CDATA[0]]></MinimumTime>
+      <MaximumTime><![CDATA[1800000]]></MaximumTime>
+      <Running><![CDATA[true]]></Running>
+      <Direction><![CDATA[true]]></Direction>
+    </Clock>
+    <Clock Id="Jam">
+      <Start empty="true"><![CDATA[]]></Start>
+      <UnStart empty="true"><![CDATA[]]></UnStart>
+      <Stop empty="true"><![CDATA[]]></Stop>
+      <UnStop empty="true"><![CDATA[]]></UnStop>
+      <ResetTime empty="true"><![CDATA[]]></ResetTime>
+      <Name><![CDATA[Jam]]></Name>
+      <Number><![CDATA[1]]></Number>
+      <MinimumNumber><![CDATA[1]]></MinimumNumber>
+      <MaximumNumber><![CDATA[999]]></MaximumNumber>
+      <Time><![CDATA[120000]]></Time>
+      <MinimumTime><![CDATA[0]]></MinimumTime>
+      <MaximumTime><![CDATA[120000]]></MaximumTime>
+      <Running><![CDATA[false]]></Running>
+      <Direction><![CDATA[true]]></Direction>
+    </Clock>
+    <Clock Id="Lineup">
+      <Start empty="true"><![CDATA[]]></Start>
+      <UnStart empty="true"><![CDATA[]]></UnStart>
+      <Stop empty="true"><![CDATA[]]></Stop>
+      <UnStop empty="true"><![CDATA[]]></UnStop>
+      <ResetTime empty="true"><![CDATA[]]></ResetTime>
+      <Name><![CDATA[Lineup]]></Name>
+      <Number><![CDATA[1]]></Number>
+      <MinimumNumber><![CDATA[1]]></MinimumNumber>
+      <MaximumNumber><![CDATA[999]]></MaximumNumber>
+      <Time><![CDATA[1550]]></Time>
+      <MinimumTime><![CDATA[0]]></MinimumTime>
+      <MaximumTime><![CDATA[3600000]]></MaximumTime>
+      <Running><![CDATA[false]]></Running>
+      <Direction><![CDATA[false]]></Direction>
+    </Clock>
+    <Clock Id="Timeout">
+      <Start empty="true"><![CDATA[]]></Start>
+      <UnStart empty="true"><![CDATA[]]></UnStart>
+      <Stop empty="true"><![CDATA[]]></Stop>
+      <UnStop empty="true"><![CDATA[]]></UnStop>
+      <ResetTime empty="true"><![CDATA[]]></ResetTime>
+      <Name><![CDATA[Timeout]]></Name>
+      <Number><![CDATA[2]]></Number>
+      <MinimumNumber><![CDATA[1]]></MinimumNumber>
+      <MaximumNumber><![CDATA[999]]></MaximumNumber>
+      <Time><![CDATA[177227]]></Time>
+      <MinimumTime><![CDATA[0]]></MinimumTime>
+      <MaximumTime><![CDATA[3600000]]></MaximumTime>
+      <Running><![CDATA[false]]></Running>
+      <Direction><![CDATA[false]]></Direction>
+    </Clock>
+    <Clock Id="Intermission">
+      <Start empty="true"><![CDATA[]]></Start>
+      <UnStart empty="true"><![CDATA[]]></UnStart>
+      <Stop empty="true"><![CDATA[]]></Stop>
+      <UnStop empty="true"><![CDATA[]]></UnStop>
+      <ResetTime empty="true"><![CDATA[]]></ResetTime>
+      <Name><![CDATA[Intermission]]></Name>
+      <Number><![CDATA[0]]></Number>
+      <MinimumNumber><![CDATA[0]]></MinimumNumber>
+      <MaximumNumber><![CDATA[999]]></MaximumNumber>
+      <Time><![CDATA[804686]]></Time>
+      <MinimumTime><![CDATA[0]]></MinimumTime>
+      <MaximumTime><![CDATA[3600000]]></MaximumTime>
+      <Running><![CDATA[false]]></Running>
+      <Direction><![CDATA[true]]></Direction>
+    </Clock>
+  </ScoreBoard>
+  <SaveLoad />
+  <Teams>
+    <Reset />
+    <Transfer>
+      <To>
+        <Team1 />
+        <Team2 />
+      </To>
+      <From>
+        <Team1 />
+        <Team2 />
+      </From>
+    </Transfer>
+    <Merge>
+      <To>
+        <Team1 />
+        <Team2 />
+      </To>
+      <From>
+        <Team1 />
+        <Team2 />
+      </From>
+    </Merge>
+    <Team Id="C.U.C.A">
+      <Name><![CDATA[C.U.C.A]]></Name>
+      <Logo />
+      <AlternateName Id="Warriors">
+        <Name><![CDATA[Warriors]]></Name>
+      </AlternateName>
+    </Team>
+    <Team Id="Evelyn Mack">
+      <Name><![CDATA[Evelyn Mack]]></Name>
+      <Logo />
+    </Team>
+  </Teams>
+  <Reset>
+    <Reset />
+  </Reset>
+  <ReloadViewers>
+    <Reset />
+  </ReloadViewers>
+  <Pages>
+    <Reset />
+    <Page Id="scoreboard.html">
+      <Intermission Id="0">
+        <ShowUnofficial><![CDATA[false]]></ShowUnofficial>
+        <Text><![CDATA[Time to Game]]></Text>
+        <HideClock><![CDATA[false]]></HideClock>
+        <Confirmed><![CDATA[false]]></Confirmed>
+      </Intermission>
+      <Intermission Id="1">
+        <ShowUnofficial><![CDATA[false]]></ShowUnofficial>
+        <Text><![CDATA[Half Time]]></Text>
+        <HideClock><![CDATA[false]]></HideClock>
+        <Confirmed><![CDATA[false]]></Confirmed>
+      </Intermission>
+      <Intermission Id="2">
+        <Confirmed><![CDATA[false]]></Confirmed>
+        <ShowUnofficial><![CDATA[false]]></ShowUnofficial>
+        <Text><![CDATA[Final/Time to Game]]></Text>
+        <HideClock><![CDATA[false]]></HideClock>
+      </Intermission>
+      <ViewOptions>
+        <CurrentView><![CDATA[scoreboard]]></CurrentView>
+        <SwapTeams><![CDATA[false]]></SwapTeams>
+        <View Id="Image">
+          <Src><![CDATA[/images/fullscreen/American Flag.jpg]]></Src>
+        </View>
+        <View Id="Video">
+          <Src><![CDATA[/videos/fullscreen/American Flag.webm]]></Src>
+        </View>
+        <View Id="CustomHtml">
+          <Src><![CDATA[/customhtml/fullscreen/example.html]]></Src>
+        </View>
+      </ViewOptions>
+      <PreviewOptions>
+        <CurrentView><![CDATA[scoreboard]]></CurrentView>
+        <SwapTeams><![CDATA[false]]></SwapTeams>
+        <View Id="Image">
+          <Src><![CDATA[/images/fullscreen/American Flag.jpg]]></Src>
+        </View>
+        <View Id="Video">
+          <Src><![CDATA[/videos/fullscreen/American Flag.webm]]></Src>
+        </View>
+        <View Id="CustomHtml">
+          <Src><![CDATA[/customhtml/fullscreen/example.html]]></Src>
+        </View>
+      </PreviewOptions>
+      <Intermission Id="3">
+        <Confirmed><![CDATA[false]]></Confirmed>
+        <HideClock />
+        <ShowUnofficial />
+        <Text />
+      </Intermission>
+    </Page>
+    <Page Id="operator.html">
+      <Operator Id="password">
+        <KeyControl Id="StartJam">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="StopJam">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Timeout">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="UnStartJam">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="UnStopJam">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="UnTimeout">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team1ScoreDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team1ScoreUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team2ScoreUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team1Timeout">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team1OfficialReview">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team2ScoreDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team2OfficialReview">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team1Lead">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team2Timeout">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team2NoLead">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team2Lead">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team1NoLead">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team1PassDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team1PassUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team2PassUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team2PassDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockPeriodNumberDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockPeriodNumberUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockJamNumberDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockJamNumberUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockLineupNumberDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockLineupNumberUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockTimeoutNumberDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockTimeoutNumberUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockIntermissionNumberDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockIntermissionNumberUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockPeriodStart">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockPeriodStop">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockJamStart">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockJamStop">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockLineupStart">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockLineupStop">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockTimeoutStart">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockTimeoutStop">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockIntermissionStart">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockIntermissionStop">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockPeriodTimeDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockPeriodTimeUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockJamTimeDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockJamTimeUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockLineupTimeDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockLineupTimeUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockTimeoutTimeDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockTimeoutTimeUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockIntermissionTimeDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockIntermissionTimeUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockPeriodResetTime">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockJamResetTime">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockLineupResetTime">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockTimeoutResetTime">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockIntermissionResetTime">
+          <Key />
+        </KeyControl>
+      </Operator>
+      <Operator Id="Riley">
+        <KeyControl Id="StartJam">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="StopJam">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Timeout">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="UnStartJam">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="UnStopJam">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="UnTimeout">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team1ScoreDown">
+          <Key><![CDATA[=]]></Key>
+        </KeyControl>
+        <KeyControl Id="Team1ScoreUp">
+          <Key><![CDATA[-]]></Key>
+        </KeyControl>
+        <KeyControl Id="Team2ScoreUp">
+          <Key><![CDATA[]]]></Key>
+        </KeyControl>
+        <KeyControl Id="Team2ScoreDown">
+          <Key><![CDATA[[]]></Key>
+        </KeyControl>
+        <KeyControl Id="Team1Timeout">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team1OfficialReview">
+          <Key><![CDATA[;]]></Key>
+        </KeyControl>
+        <KeyControl Id="Team2OfficialReview">
+          <Key><![CDATA[']]></Key>
+        </KeyControl>
+        <KeyControl Id="Team2Timeout">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team1Lead">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team1NoLead">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team2NoLead">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team2Lead">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team1PassDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team1PassUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team2PassUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team2PassDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockPeriodNumberDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockPeriodNumberUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockJamNumberDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockJamNumberUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockLineupNumberDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockLineupNumberUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockTimeoutNumberDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockTimeoutNumberUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockIntermissionNumberDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockIntermissionNumberUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockPeriodStart">
+          <Key><![CDATA[w]]></Key>
+        </KeyControl>
+        <KeyControl Id="ClockPeriodStop">
+          <Key><![CDATA[q]]></Key>
+        </KeyControl>
+        <KeyControl Id="ClockJamStart">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockJamStop">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockLineupStart">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockLineupStop">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockTimeoutStart">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockTimeoutStop">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockIntermissionStart">
+          <Key><![CDATA[e]]></Key>
+        </KeyControl>
+        <KeyControl Id="ClockIntermissionStop">
+          <Key><![CDATA[r]]></Key>
+        </KeyControl>
+        <KeyControl Id="ClockPeriodTimeDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockPeriodTimeUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockJamTimeDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockJamTimeUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockLineupTimeDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockLineupTimeUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockTimeoutTimeDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockTimeoutTimeUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockIntermissionTimeDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockIntermissionTimeUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockPeriodResetTime">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockJamResetTime">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockLineupResetTime">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockTimeoutResetTime">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockIntermissionResetTime">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockNumberDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockNumberUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockStart">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockStop">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockTimeDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockTimeUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockResetTime">
+          <Key />
+        </KeyControl>
+      </Operator>
+      <Operator Id="riley\">
+        <KeyControl Id="StartJam">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="StopJam">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Timeout">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="UnStartJam">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="UnStopJam">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="UnTimeout">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team1ScoreDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team1ScoreUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team2ScoreUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team2ScoreDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team1Timeout">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team1OfficialReview">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team2Timeout">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team2OfficialReview">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team1Lead">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team1NoLead">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team2NoLead">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team2Lead">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team1PassDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team1PassUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team2PassUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="Team2PassDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockPeriodNumberDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockPeriodNumberUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockJamNumberDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockJamNumberUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockLineupNumberDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockLineupNumberUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockTimeoutNumberDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockTimeoutNumberUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockIntermissionNumberDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockIntermissionNumberUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockPeriodStart">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockPeriodStop">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockJamStart">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockJamStop">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockLineupStart">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockLineupStop">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockTimeoutStart">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockTimeoutStop">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockIntermissionStart">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockIntermissionStop">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockPeriodTimeDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockPeriodTimeUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockJamTimeDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockJamTimeUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockLineupTimeDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockLineupTimeUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockTimeoutTimeDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockTimeoutTimeUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockIntermissionTimeDown">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockIntermissionTimeUp">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockPeriodResetTime">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockJamResetTime">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockLineupResetTime">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockTimeoutResetTime">
+          <Key />
+        </KeyControl>
+        <KeyControl Id="ClockIntermissionResetTime">
+          <Key />
+        </KeyControl>
+      </Operator>
+    </Page>
+    <Page Id="stream.html" />
+    <Page Id="wo.html" />
+    <Page Id="media_management.html" />
+    <Page Id="overlay-16x9.html" />
+    <Page Id="overlay-4x3.html" />
+    <Page Id="twitter.html" />
+    <Page Id="mobile.html" />
+    <Page Id="lineups.html" />
+  </Pages>
+  <Images>
+    <Reset />
+    <Type Id="fullscreen">
+      <Image Id="American Flag.jpg">
+        <Name><![CDATA[American Flag]]></Name>
+        <Src><![CDATA[/images/fullscreen/American Flag.jpg]]></Src>
+      </Image>
+      <Image Id="overlay.png">
+        <Name><![CDATA[overlay]]></Name>
+        <Src><![CDATA[/images/fullscreen/overlay.png]]></Src>
+      </Image>
+    </Type>
+    <Type Id="sponsor_banner" />
+    <Type Id="teamlogo" />
+    <Type Id="wo">
+      <Image Id="wftda_overlay_info.png">
+        <Name><![CDATA[wftda_overlay_info]]></Name>
+        <Src><![CDATA[/images/wo/wftda_overlay_info.png]]></Src>
+      </Image>
+      <Image Id="wftda_overlay_main.png">
+        <Name><![CDATA[wftda_overlay_main]]></Name>
+        <Src><![CDATA[/images/wo/wftda_overlay_main.png]]></Src>
+      </Image>
+      <Image Id="wftda_overlay_t1_lead.png">
+        <Name><![CDATA[wftda_overlay_t1_lead]]></Name>
+        <Src><![CDATA[/images/wo/wftda_overlay_t1_lead.png]]></Src>
+      </Image>
+      <Image Id="wftda_overlay_t1_or.png">
+        <Name><![CDATA[wftda_overlay_t1_or]]></Name>
+        <Src><![CDATA[/images/wo/wftda_overlay_t1_or.png]]></Src>
+      </Image>
+      <Image Id="wftda_overlay_t1_to1.png">
+        <Name><![CDATA[wftda_overlay_t1_to1]]></Name>
+        <Src><![CDATA[/images/wo/wftda_overlay_t1_to1.png]]></Src>
+      </Image>
+      <Image Id="wftda_overlay_t1_to2.png">
+        <Name><![CDATA[wftda_overlay_t1_to2]]></Name>
+        <Src><![CDATA[/images/wo/wftda_overlay_t1_to2.png]]></Src>
+      </Image>
+      <Image Id="wftda_overlay_t1_to3.png">
+        <Name><![CDATA[wftda_overlay_t1_to3]]></Name>
+        <Src><![CDATA[/images/wo/wftda_overlay_t1_to3.png]]></Src>
+      </Image>
+      <Image Id="wftda_overlay_t2_lead.png">
+        <Name><![CDATA[wftda_overlay_t2_lead]]></Name>
+        <Src><![CDATA[/images/wo/wftda_overlay_t2_lead.png]]></Src>
+      </Image>
+      <Image Id="wftda_overlay_t2_or.png">
+        <Name><![CDATA[wftda_overlay_t2_or]]></Name>
+        <Src><![CDATA[/images/wo/wftda_overlay_t2_or.png]]></Src>
+      </Image>
+      <Image Id="wftda_overlay_t2_to1.png">
+        <Name><![CDATA[wftda_overlay_t2_to1]]></Name>
+        <Src><![CDATA[/images/wo/wftda_overlay_t2_to1.png]]></Src>
+      </Image>
+      <Image Id="wftda_overlay_t2_to2.png">
+        <Name><![CDATA[wftda_overlay_t2_to2]]></Name>
+        <Src><![CDATA[/images/wo/wftda_overlay_t2_to2.png]]></Src>
+      </Image>
+      <Image Id="wftda_overlay_t2_to3.png">
+        <Name><![CDATA[wftda_overlay_t2_to3]]></Name>
+        <Src><![CDATA[/images/wo/wftda_overlay_t2_to3.png]]></Src>
+      </Image>
+    </Type>
+  </Images>
+  <Videos>
+    <Reset />
+    <Type Id="fullscreen">
+      <Video Id="American Flag.webm">
+        <Name><![CDATA[American Flag]]></Name>
+        <Src><![CDATA[/videos/fullscreen/American Flag.webm]]></Src>
+      </Video>
+    </Type>
+  </Videos>
+  <CustomHtml>
+    <Reset />
+    <Type Id="fullscreen">
+      <Html Id="example.html">
+        <Name><![CDATA[example]]></Name>
+        <Src><![CDATA[/customhtml/fullscreen/example.html]]></Src>
+      </Html>
+    </Type>
+  </CustomHtml>
+  <Viewers>
+    <Twitter>
+      <ConditionalTweet Id="00000000-0000-0000-0000-000000000001">
+        <Condition><![CDATA[%citms=5:00 %ciN=0 %cir=true]]></Condition>
+        <Tweet><![CDATA[5 minutes to Derby! %t1Nt vs %t2Nt]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-000000000002">
+        <Condition><![CDATA[%sbip=true %sbio=false]]></Condition>
+        <Tweet><![CDATA[Start Period %cpN, %t1Nt vs %t2Nt]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-000000000003">
+        <Condition><![CDATA[%cptms=25:00]]></Condition>
+        <Tweet><![CDATA[Period %cpN time %cptms, %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-000000000004">
+        <Condition><![CDATA[%cptms=20:00]]></Condition>
+        <Tweet><![CDATA[Period %cpN time %cptms, %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-000000000005">
+        <Condition><![CDATA[%cptms=15:00]]></Condition>
+        <Tweet><![CDATA[Period %cpN time %cptms, %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-000000000006">
+        <Condition><![CDATA[%cptms=10:00]]></Condition>
+        <Tweet><![CDATA[Period %cpN time %cptms, %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-000000000007">
+        <Condition><![CDATA[%cptms=5:00 %cpN=1]]></Condition>
+        <Tweet><![CDATA[Period %cpN time %cptms, %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-000000000008">
+        <Condition><![CDATA[%cptms=5:00 %cpN=2]]></Condition>
+        <Tweet><![CDATA[Last 5 Minutes! %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-000000000009">
+        <Condition><![CDATA[%cjr=false %cpN=2 %cptms<5:00]]></Condition>
+        <Tweet><![CDATA[End of jam %cjN, Clock %cptms, %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-00000000000a">
+        <Condition><![CDATA[%sbip=false %cpN=1]]></Condition>
+        <Tweet><![CDATA[Halftime: %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-00000000000b">
+        <Condition><![CDATA[%citms=5:00 %ciN=1 %cir=true]]></Condition>
+        <Tweet><![CDATA[5:00 until the Second Half Starts]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-00000000000c">
+        <Condition><![CDATA[%cjr=false %sbos=false %sbip=false %cpN=2]]></Condition>
+        <Tweet><![CDATA[Full time - UNOFFICIAL Final: %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-00000000000d">
+        <Condition><![CDATA[%sbos=true %sbip=false %cpN=2]]></Condition>
+        <Tweet><![CDATA[Official Final Score: %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-00000000000e">
+        <Condition><![CDATA[%sbio=true]]></Condition>
+        <Tweet><![CDATA[Overtime! %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
+      </ConditionalTweet>
+    </Twitter>
+  </Viewers>
+</document>
+
