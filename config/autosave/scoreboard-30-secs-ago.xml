@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document Version="3.0.0" SystemTime="1391381838201">
+<document Version="3.0.0" SystemTime="1391386603000">
   <ScoreBoard>
     <Reset empty="true"><![CDATA[]]></Reset>
     <StartJam empty="true"><![CDATA[]]></StartJam>
@@ -12,7 +12,7 @@
     <TimeoutOwner empty="true"><![CDATA[]]></TimeoutOwner>
     <OfficialReview><![CDATA[false]]></OfficialReview>
     <InOvertime><![CDATA[false]]></InOvertime>
-    <InPeriod><![CDATA[true]]></InPeriod>
+    <InPeriod><![CDATA[false]]></InPeriod>
     <OfficialScore><![CDATA[false]]></OfficialScore>
     <Policy Id="Period Clock Resets Official Score">
       <Name><![CDATA[Period Clock Resets Official Score]]></Name>
@@ -212,7 +212,7 @@
     <Team Id="1">
       <Timeout empty="true"><![CDATA[]]></Timeout>
       <OfficialReview empty="true"><![CDATA[]]></OfficialReview>
-      <Name><![CDATA[C.U.C.A]]></Name>
+      <Name><![CDATA[Team 1]]></Name>
       <Logo empty="true"><![CDATA[]]></Logo>
       <Score><![CDATA[6]]></Score>
       <Timeouts><![CDATA[3]]></Timeouts>
@@ -249,11 +249,17 @@
         <Name empty="true"><![CDATA[]]></Name>
         <Number empty="true"><![CDATA[]]></Number>
       </Position>
+      <AlternateName Id="mobile">
+        <Name empty="true"><![CDATA[]]></Name>
+      </AlternateName>
+      <AlternateName Id="overlay">
+        <Name empty="true"><![CDATA[]]></Name>
+      </AlternateName>
     </Team>
     <Team Id="2">
       <Timeout empty="true"><![CDATA[]]></Timeout>
       <OfficialReview empty="true"><![CDATA[]]></OfficialReview>
-      <Name><![CDATA[Evelyn Mack]]></Name>
+      <Name><![CDATA[Team 2]]></Name>
       <Logo empty="true"><![CDATA[]]></Logo>
       <Score><![CDATA[8]]></Score>
       <Timeouts><![CDATA[3]]></Timeouts>
@@ -290,6 +296,12 @@
         <Name empty="true"><![CDATA[]]></Name>
         <Number empty="true"><![CDATA[]]></Number>
       </Position>
+      <AlternateName Id="mobile">
+        <Name empty="true"><![CDATA[]]></Name>
+      </AlternateName>
+      <AlternateName Id="overlay">
+        <Name empty="true"><![CDATA[]]></Name>
+      </AlternateName>
     </Team>
     <Clock Id="Period">
       <Start empty="true"><![CDATA[]]></Start>
@@ -301,10 +313,10 @@
       <Number><![CDATA[1]]></Number>
       <MinimumNumber><![CDATA[1]]></MinimumNumber>
       <MaximumNumber><![CDATA[2]]></MaximumNumber>
-      <Time><![CDATA[213850]]></Time>
+      <Time><![CDATA[480000]]></Time>
       <MinimumTime><![CDATA[0]]></MinimumTime>
       <MaximumTime><![CDATA[1800000]]></MaximumTime>
-      <Running><![CDATA[true]]></Running>
+      <Running><![CDATA[false]]></Running>
       <Direction><![CDATA[true]]></Direction>
     </Clock>
     <Clock Id="Jam">
@@ -362,10 +374,10 @@
       <UnStop empty="true"><![CDATA[]]></UnStop>
       <ResetTime empty="true"><![CDATA[]]></ResetTime>
       <Name><![CDATA[Intermission]]></Name>
-      <Number><![CDATA[0]]></Number>
+      <Number><![CDATA[1]]></Number>
       <MinimumNumber><![CDATA[0]]></MinimumNumber>
       <MaximumNumber><![CDATA[999]]></MaximumNumber>
-      <Time><![CDATA[804686]]></Time>
+      <Time><![CDATA[0]]></Time>
       <MinimumTime><![CDATA[0]]></MinimumTime>
       <MaximumTime><![CDATA[3600000]]></MaximumTime>
       <Running><![CDATA[false]]></Running>
@@ -373,6 +385,72 @@
     </Clock>
   </ScoreBoard>
   <SaveLoad />
+  <Viewers>
+    <Twitter>
+      <ConditionalTweet Id="00000000-0000-0000-0000-000000000001">
+        <Condition><![CDATA[%citms=5:00 %ciN=0 %cir=true]]></Condition>
+        <Tweet><![CDATA[5 minutes to Derby! %t1Nt vs %t2Nt]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-000000000002">
+        <Condition><![CDATA[%sbip=true %sbio=false]]></Condition>
+        <Tweet><![CDATA[Start Period %cpN, %t1Nt vs %t2Nt]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-000000000003">
+        <Condition><![CDATA[%cptms=25:00]]></Condition>
+        <Tweet><![CDATA[Period %cpN time %cptms, %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-000000000004">
+        <Condition><![CDATA[%cptms=20:00]]></Condition>
+        <Tweet><![CDATA[Period %cpN time %cptms, %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-000000000005">
+        <Condition><![CDATA[%cptms=15:00]]></Condition>
+        <Tweet><![CDATA[Period %cpN time %cptms, %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-000000000006">
+        <Condition><![CDATA[%cptms=10:00]]></Condition>
+        <Tweet><![CDATA[Period %cpN time %cptms, %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-000000000007">
+        <Condition><![CDATA[%cptms=5:00 %cpN=1]]></Condition>
+        <Tweet><![CDATA[Period %cpN time %cptms, %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-000000000008">
+        <Condition><![CDATA[%cptms=5:00 %cpN=2]]></Condition>
+        <Tweet><![CDATA[Last 5 Minutes! %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-000000000009">
+        <Condition><![CDATA[%cjr=false %cpN=2 %cptms<5:00]]></Condition>
+        <Tweet><![CDATA[End of jam %cjN, Clock %cptms, %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-00000000000a">
+        <Condition><![CDATA[%sbip=false %cpN=1]]></Condition>
+        <Tweet><![CDATA[Halftime: %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-00000000000b">
+        <Condition><![CDATA[%citms=5:00 %ciN=1 %cir=true]]></Condition>
+        <Tweet><![CDATA[5:00 until the Second Half Starts]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-00000000000c">
+        <Condition><![CDATA[%cjr=false %sbos=false %sbip=false %cpN=2]]></Condition>
+        <Tweet><![CDATA[Full time - UNOFFICIAL Final: %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-00000000000d">
+        <Condition><![CDATA[%sbos=true %sbip=false %cpN=2]]></Condition>
+        <Tweet><![CDATA[Official Final Score: %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
+      </ConditionalTweet>
+      <ConditionalTweet Id="00000000-0000-0000-0000-00000000000e">
+        <Condition><![CDATA[%sbio=true]]></Condition>
+        <Tweet><![CDATA[Overtime! %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
+      </ConditionalTweet>
+    </Twitter>
+  </Viewers>
+  <ReloadViewers>
+    <Reset />
+  </ReloadViewers>
+  <Reset>
+    <Reset />
+  </Reset>
   <Teams>
     <Reset />
     <Transfer>
@@ -407,12 +485,6 @@
       <Logo />
     </Team>
   </Teams>
-  <Reset>
-    <Reset />
-  </Reset>
-  <ReloadViewers>
-    <Reset />
-  </ReloadViewers>
   <Pages>
     <Reset />
     <Page Id="scoreboard.html">
@@ -1018,6 +1090,24 @@
     <Page Id="mobile.html" />
     <Page Id="lineups.html" />
   </Pages>
+  <Videos>
+    <Reset />
+    <Type Id="fullscreen">
+      <Video Id="American Flag.webm">
+        <Name><![CDATA[American Flag]]></Name>
+        <Src><![CDATA[/videos/fullscreen/American Flag.webm]]></Src>
+      </Video>
+    </Type>
+  </Videos>
+  <CustomHtml>
+    <Reset />
+    <Type Id="fullscreen">
+      <Html Id="example.html">
+        <Name><![CDATA[example]]></Name>
+        <Src><![CDATA[/customhtml/fullscreen/example.html]]></Src>
+      </Html>
+    </Type>
+  </CustomHtml>
   <Images>
     <Reset />
     <Type Id="fullscreen">
@@ -1083,83 +1173,5 @@
       </Image>
     </Type>
   </Images>
-  <Videos>
-    <Reset />
-    <Type Id="fullscreen">
-      <Video Id="American Flag.webm">
-        <Name><![CDATA[American Flag]]></Name>
-        <Src><![CDATA[/videos/fullscreen/American Flag.webm]]></Src>
-      </Video>
-    </Type>
-  </Videos>
-  <CustomHtml>
-    <Reset />
-    <Type Id="fullscreen">
-      <Html Id="example.html">
-        <Name><![CDATA[example]]></Name>
-        <Src><![CDATA[/customhtml/fullscreen/example.html]]></Src>
-      </Html>
-    </Type>
-  </CustomHtml>
-  <Viewers>
-    <Twitter>
-      <ConditionalTweet Id="00000000-0000-0000-0000-000000000001">
-        <Condition><![CDATA[%citms=5:00 %ciN=0 %cir=true]]></Condition>
-        <Tweet><![CDATA[5 minutes to Derby! %t1Nt vs %t2Nt]]></Tweet>
-      </ConditionalTweet>
-      <ConditionalTweet Id="00000000-0000-0000-0000-000000000002">
-        <Condition><![CDATA[%sbip=true %sbio=false]]></Condition>
-        <Tweet><![CDATA[Start Period %cpN, %t1Nt vs %t2Nt]]></Tweet>
-      </ConditionalTweet>
-      <ConditionalTweet Id="00000000-0000-0000-0000-000000000003">
-        <Condition><![CDATA[%cptms=25:00]]></Condition>
-        <Tweet><![CDATA[Period %cpN time %cptms, %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
-      </ConditionalTweet>
-      <ConditionalTweet Id="00000000-0000-0000-0000-000000000004">
-        <Condition><![CDATA[%cptms=20:00]]></Condition>
-        <Tweet><![CDATA[Period %cpN time %cptms, %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
-      </ConditionalTweet>
-      <ConditionalTweet Id="00000000-0000-0000-0000-000000000005">
-        <Condition><![CDATA[%cptms=15:00]]></Condition>
-        <Tweet><![CDATA[Period %cpN time %cptms, %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
-      </ConditionalTweet>
-      <ConditionalTweet Id="00000000-0000-0000-0000-000000000006">
-        <Condition><![CDATA[%cptms=10:00]]></Condition>
-        <Tweet><![CDATA[Period %cpN time %cptms, %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
-      </ConditionalTweet>
-      <ConditionalTweet Id="00000000-0000-0000-0000-000000000007">
-        <Condition><![CDATA[%cptms=5:00 %cpN=1]]></Condition>
-        <Tweet><![CDATA[Period %cpN time %cptms, %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
-      </ConditionalTweet>
-      <ConditionalTweet Id="00000000-0000-0000-0000-000000000008">
-        <Condition><![CDATA[%cptms=5:00 %cpN=2]]></Condition>
-        <Tweet><![CDATA[Last 5 Minutes! %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
-      </ConditionalTweet>
-      <ConditionalTweet Id="00000000-0000-0000-0000-000000000009">
-        <Condition><![CDATA[%cjr=false %cpN=2 %cptms<5:00]]></Condition>
-        <Tweet><![CDATA[End of jam %cjN, Clock %cptms, %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
-      </ConditionalTweet>
-      <ConditionalTweet Id="00000000-0000-0000-0000-00000000000a">
-        <Condition><![CDATA[%sbip=false %cpN=1]]></Condition>
-        <Tweet><![CDATA[Halftime: %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
-      </ConditionalTweet>
-      <ConditionalTweet Id="00000000-0000-0000-0000-00000000000b">
-        <Condition><![CDATA[%citms=5:00 %ciN=1 %cir=true]]></Condition>
-        <Tweet><![CDATA[5:00 until the Second Half Starts]]></Tweet>
-      </ConditionalTweet>
-      <ConditionalTweet Id="00000000-0000-0000-0000-00000000000c">
-        <Condition><![CDATA[%cjr=false %sbos=false %sbip=false %cpN=2]]></Condition>
-        <Tweet><![CDATA[Full time - UNOFFICIAL Final: %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
-      </ConditionalTweet>
-      <ConditionalTweet Id="00000000-0000-0000-0000-00000000000d">
-        <Condition><![CDATA[%sbos=true %sbip=false %cpN=2]]></Condition>
-        <Tweet><![CDATA[Official Final Score: %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
-      </ConditionalTweet>
-      <ConditionalTweet Id="00000000-0000-0000-0000-00000000000e">
-        <Condition><![CDATA[%sbio=true]]></Condition>
-        <Tweet><![CDATA[Overtime! %t1Nt %t1s, %t2Nt %t2s]]></Tweet>
-      </ConditionalTweet>
-    </Twitter>
-  </Viewers>
 </document>
 
